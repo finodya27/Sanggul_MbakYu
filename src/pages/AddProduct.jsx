@@ -93,60 +93,60 @@ function AddProduct() {
   };
 
   return (
-    <div className="flex justify-center items-center py-16">
-      <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-2xl">
-        <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Tambah Produk Baru</h2>
+    <div className="flex justify-center items-center py-16 px-4 sm:px-6 lg:px-8"> 
+      <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-2xl border border-amber-100"> 
+        <h2 className="text-3xl font-bold text-center text-amber-900 font-serif mb-8">Tambah Produk Baru</h2> 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="name" className="block text-gray-700 text-lg font-medium mb-2">Nama Produk:</label>
+            <label htmlFor="name" className="block text-amber-700 text-lg font-medium mb-2">Nama Produk:</label> 
             <input
               type="text"
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-3 border border-amber-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200" // Warna focus & border
             />
           </div>
           <div>
-            <label htmlFor="description" className="block text-gray-700 text-lg font-medium mb-2">Deskripsi:</label>
+            <label htmlFor="description" className="block text-amber-700 text-lg font-medium mb-2">Deskripsi:</label> 
             <textarea
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows="4"
-              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-3 border border-amber-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200" // Warna focus & border
             ></textarea>
           </div>
           <div>
-            <label htmlFor="price" className="block text-gray-700 text-lg font-medium mb-2">Harga (Rp):</label>
+            <label htmlFor="price" className="block text-amber-700 text-lg font-medium mb-2">Harga (Rp):</label> 
             <input
               type="number"
               id="price"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-3 border border-amber-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200" // Warna focus & border
             />
           </div>
           <div>
-            <label htmlFor="image" className="block text-gray-700 text-lg font-medium mb-2">Gambar Produk:</label>
+            <label htmlFor="image" className="block text-amber-700 text-lg font-medium mb-2">Gambar Produk:</label> 
             <input
               type="file"
               id="image"
               accept="image/*"
               onChange={handleImageChange}
               required
-              className="w-full text-gray-700 bg-white border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full text-amber-700 bg-white border border-amber-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-amber-500" // Warna focus & border
             />
             {imageFile && (
-              <p className="mt-2 text-sm text-gray-600">File dipilih: {imageFile.name}</p>
+              <p className="mt-2 text-sm text-amber-600">File dipilih: {imageFile.name}</p> 
             )}
           </div>
-          {status && status !== 'success' && <p className={`text-center mt-4 ${status === 'error' ? 'text-red-500' : 'text-blue-500'}`}>{status}</p>}
+          {status && status !== 'success' && <p className={`text-center mt-4 ${status === 'error' ? 'text-red-600' : 'text-amber-600'}`}>{status}</p>} 
           <button
             type="submit"
-            className="w-full bg-purple-600 text-white py-3 px-6 rounded-md text-lg font-semibold hover:bg-purple-700 transition duration-300 flex items-center justify-center"
+            className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 px-6 rounded-md text-lg font-semibold shadow-lg hover:from-green-700 hover:to-emerald-700 transition duration-300 flex items-center justify-center transform hover:scale-105" // Gradien hijau & transform
             disabled={loading}
           >
             <FaPlusSquare className="mr-2" />
