@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
-import { FaSave, FaCloudUploadAlt } from 'react-icons/fa';
+import { FaSave } from 'react-icons/fa';
 
 function EditProduct() {
   const { id } = useParams();
