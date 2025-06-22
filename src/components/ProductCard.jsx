@@ -1,25 +1,25 @@
 // src/components/ProductCard.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaTrash } from 'react-icons/fa'; // Import ikon hapus
+import { FaTrash, FaEdit } from 'react-icons/fa'; // Import ikon hapus dan edit
 
 function ProductCard({ product, isAdmin, onDelete }) { // Terima prop isAdmin dan onDelete
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform hover:scale-105 duration-300 relative border border-amber-100 flex flex-col"> {/* Tetap flex-col pada kartu utama */}
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform hover:scale-105 duration-300 relative border border-amber-100 flex flex-col">
       <img
         src={product.imageUrl || 'https://via.placeholder.com/300x200/FFECB3/8D6E63?text=Sanggul'}
         alt={product.name}
         className="w-full h-48 object-cover object-center"
       />
-      {/* Kontainer konten utama, sekarang lebih fleksibel */}
-      <div className="p-4 flex flex-col flex-grow"> {/* Hapus justify-between dari sini */}
-        <h3 className="text-xl font-semibold mb-2 text-amber-900 font-serif leading-tight"> {/* Tambahkan leading-tight untuk multi-baris nama */}
+      <div className="p-4 flex flex-col flex-grow">
+        <h3 className="text-xl font-semibold mb-2 text-amber-900 font-serif leading-tight">
           {product.name}
         </h3>
-        
-        {/* Kontainer untuk harga dan tombol, didorong ke bawah */}
-        <div className="mt-auto pt-2"> {/* mt-auto untuk dorong ke bawah, pt-2 untuk sedikit padding atas */}
-          <p className="text-amber-700 mb-3 font-bold text-lg"> {/* Warna & font harga, mb-3 tetap agar tidak terlalu mepet */}
+        {product.category && ( // Display category if it exists
+          <p className="text-sm text-amber-600 mb-2">Kategori: {product.category}</p>
+        )}
+        <div className="mt-auto pt-2">
+          <p className="text-amber-700 mb-3 font-bold text-lg">
             Rp {product.price ? product.price.toLocaleString('id-ID') : 'N/A'}
           </p>
           <Link
@@ -31,15 +31,24 @@ function ProductCard({ product, isAdmin, onDelete }) { // Terima prop isAdmin da
         </div>
       </div>
 
-      {/* Tombol Hapus - Hanya tampil jika isAdmin true */}
+      {/* Tombol Aksi Admin */}
       {isAdmin && (
-        <button
-          onClick={() => onDelete(product.id, product.name)} // Panggil onDelete dengan ID dan nama produk
-          className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full shadow-md hover:bg-red-600 transition duration-300 z-10"
-          aria-label={`Hapus ${product.name}`}
-        >
-          <FaTrash size={16} />
-        </button>
+        <div className="absolute top-2 right-2 flex space-x-2"> {/* Container for admin buttons */}
+          <Link
+            to={`/admin/edit-product/${product.id}`} // Link to edit page
+            className="bg-blue-500 text-white p-2 rounded-full shadow-md hover:bg-blue-600 transition duration-300 z-10"
+            aria-label={`Edit ${product.name}`}
+          >
+            <FaEdit size={16} />
+          </Link>
+          <button
+            onClick={() => onDelete(product.id, product.name)} // Panggil onDelete dengan ID dan nama produk
+            className="bg-red-500 text-white p-2 rounded-full shadow-md hover:bg-red-600 transition duration-300 z-10"
+            aria-label={`Hapus ${product.name}`}
+          >
+            <FaTrash size={16} />
+          </button>
+        </div>
       )}
     </div>
   );

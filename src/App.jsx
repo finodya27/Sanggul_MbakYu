@@ -9,7 +9,8 @@ import ProductDetail from './pages/ProductDetail';
 import Contact from './pages/Contact';
 import AdminLogin from './pages/AdminLogin';
 import AddProduct from './pages/AddProduct';
-import ProtectedRoute from './components/ProtectedRoute'; // Import ProtectedRoute
+import EditProduct from './pages/EditProduct'; // Import the new EditProduct component
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -23,10 +24,14 @@ function App() {
             <Route path="/products/:id" element={<ProductDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin-login" element={<AdminLogin />} />
-            {/* Protected Route for Admin */}
+            {/* Protected Routes for Admin */}
             <Route
               path="/admin/add-product"
               element={<ProtectedRoute element={<AddProduct />} />}
+            />
+            <Route
+              path="/admin/edit-product/:id" // New protected route for editing products
+              element={<ProtectedRoute element={<EditProduct />} />}
             />
           </Routes>
         </main>

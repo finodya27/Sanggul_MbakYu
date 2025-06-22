@@ -74,8 +74,7 @@ function Products() {
   }, [products, searchTerm, filterCategory]);
 
   // Daftar kategori yang tetap
-  const categories = ['All', 'Anak-anak', 'Dewasa'];
-
+  const categories = ['All', 'Anak-anak', 'Dewasa', 'Umum']; // Added 'Umum'
 
   if (loading) return <p className="text-center text-lg text-amber-600 py-8">Memuat produk...</p>;
   if (error) return <p className="text-center text-lg text-red-600 py-8">{error}</p>;
