@@ -1,5 +1,6 @@
+// src/pages/Products.jsx
 import React, { useState, useEffect, useMemo } from 'react';
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc, query, orderBy } from "firebase/firestore"; // Import query dan orderBy
 import { db } from '../firebase-config';
 import ProductCard from '../components/ProductCard';
 import { Link } from 'react-router-dom';
@@ -12,16 +13,20 @@ function Products() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterCategory, setFilterCategory] = useState('all'); // State untuk filter kategori
+  const [filterCategory, setFilterCategory] = useState('all');
 
   const auth = getAuth();
   const [user] = useAuthState(auth);
-  const isAdmin = user && user.email === 'admin@sanggulmbakyu.com'; // Sesuaikan email admin Anda
+  const isAdmin = user && user.email === 'admin@sanggulmbakyu.com';
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "products"));
+        // Buat query dengan pengurutan berdasarkan 'createdAt' secara descending (terbaru dulu)
+        const productsCollectionRef = collection(db, "products");
+        const q = query(productsCollectionRef, orderBy("createdAt", "desc")); // Tambahkan orderBy
+
+        const querySnapshot = await getDocs(q); // Gunakan query yang sudah diurutkan
         const productsList = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
@@ -54,14 +59,12 @@ function Products() {
   const filteredAndSearchedProducts = useMemo(() => {
     let filtered = products;
 
-    // Filter berdasarkan kategori yang spesifik
     if (filterCategory !== 'all') {
       filtered = filtered.filter(product =>
         product.category && product.category.toLowerCase() === filterCategory.toLowerCase()
       );
     }
 
-    // Search berdasarkan nama produk atau deskripsi
     if (searchTerm) {
       filtered = filtered.filter(product =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -72,8 +75,7 @@ function Products() {
     return filtered;
   }, [products, searchTerm, filterCategory]);
 
-  // DAFTAR KATEGORI BARU UNTUK FILTER PRODUK
-  const categories = ['All', 'Sanggul', 'Aksesoris', 'Lain-lain'];
+  const categories = ['All', 'Sanggul', 'Aksesoris', 'Lain-lain']; // Pastikan ini sudah benar
 
   if (loading) return <p className="text-center text-lg text-amber-600 py-8">Memuat produk...</p>;
   if (error) return <p className="text-center text-lg text-red-600 py-8">{error}</p>;
