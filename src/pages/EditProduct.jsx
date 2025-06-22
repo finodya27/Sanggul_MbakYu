@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
-import { FaSave } from 'react-icons/fa';
+import { FaSave } from 'react-icons/fa'; // Pastikan FaCloudUploadAlt SUDAH DIHAPUS
 
 function EditProduct() {
   const { id } = useParams();
@@ -32,7 +32,8 @@ function EditProduct() {
           setName(productData.name);
           setDescription(productData.description);
           setPrice(productData.price);
-          setCategory(productData.category || 'umum'); // Set category, default to 'umum' if not found
+          // Set default category jika belum ada di data produk (untuk produk lama)
+          setCategory(productData.category || 'sanggul'); 
           setImageUrl(productData.imageUrl);
         } else {
           setError("Produk tidak ditemukan.");
@@ -118,7 +119,8 @@ function EditProduct() {
     }
   };
 
-  const categories = ['Dewasa', 'Anak-anak', 'Umum'];
+  // DAFTAR KATEGORI BARU UNTUK EDIT PRODUK
+  const categories = ['Sanggul', 'Aksesoris', 'Lain-lain'];
 
   if (loading) return <p className="text-center text-lg text-amber-600 py-8">Memuat detail produk untuk diedit...</p>;
   if (error) return <p className="text-center text-lg text-red-600 py-8">{error}</p>;

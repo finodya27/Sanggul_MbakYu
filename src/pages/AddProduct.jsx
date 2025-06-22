@@ -9,7 +9,8 @@ function AddProduct() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [category, setCategory] = useState('umum'); // New state for category, default to 'umum'
+  // Set default category ke 'sanggul' agar sesuai dengan kategori baru
+  const [category, setCategory] = useState('sanggul'); 
   const [imageFile, setImageFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState('');
@@ -71,7 +72,7 @@ function AddProduct() {
         name,
         description,
         price: parseFloat(price),
-        category, // Save the category
+        category, // Simpan kategori yang dipilih
         imageUrl,
         createdAt: new Date()
       });
@@ -81,7 +82,7 @@ function AddProduct() {
       setName('');
       setDescription('');
       setPrice('');
-      setCategory('umum'); // Reset category
+      setCategory('sanggul'); // Reset kategori ke default setelah berhasil
       setImageFile(null);
       navigate('/products');
     } catch (error) {
@@ -93,7 +94,8 @@ function AddProduct() {
     }
   };
 
-  const categories = ['Dewasa', 'Anak-anak', 'Umum']; // Categories for selection
+  // DAFTAR KATEGORI BARU UNTUK SELEKSI
+  const categories = ['Sanggul', 'Aksesoris', 'Lain-lain'];
 
   return (
     <div className="flex justify-center items-center py-16 px-4 sm:px-6 lg:px-8">

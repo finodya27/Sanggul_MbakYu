@@ -1,4 +1,3 @@
-// src/pages/Products.jsx
 import React, { useState, useEffect, useMemo } from 'react';
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from '../firebase-config';
@@ -73,8 +72,8 @@ function Products() {
     return filtered;
   }, [products, searchTerm, filterCategory]);
 
-  // Daftar kategori yang tetap
-  const categories = ['All', 'Anak-anak', 'Dewasa', 'Umum']; // Added 'Umum'
+  // DAFTAR KATEGORI BARU UNTUK FILTER PRODUK
+  const categories = ['All', 'Sanggul', 'Aksesoris', 'Lain-lain'];
 
   if (loading) return <p className="text-center text-lg text-amber-600 py-8">Memuat produk...</p>;
   if (error) return <p className="text-center text-lg text-red-600 py-8">{error}</p>;
