@@ -8,7 +8,7 @@ function Contact() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-  const [status, setStatus] = useState(''); // success, error, sending, ''
+  const [status, setStatus] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +31,6 @@ function Contact() {
   };
 
   return (
-    // Latar belakang div utama tidak berubah, tetap putih atau sesuai default parentnya
     <div className="py-12 px-4 sm:px-6 lg:px-8">
       <h2 className="text-4xl md:text-5xl font-bold text-center text-amber-900 font-serif mb-10">Hubungi Kami</h2>
       
@@ -93,7 +92,7 @@ function Contact() {
           <div className="space-y-4 text-amber-700 text-lg">
             <p className="flex items-center">
               <FaMapMarkerAlt className="mr-3 text-amber-600" />
-              Jl. Merdeka No. 123, Semarang, Jawa Tengah, Indonesia
+              Jl. Merdeka No. 123, Demak, Jawa Tengah, Indonesia
             </p>
             <p className="flex items-center">
               <FaEnvelope className="mr-3 text-amber-600" />
@@ -101,7 +100,7 @@ function Contact() {
             </p>
             <p className="flex items-center">
               <FaPhone className="mr-3 text-amber-600" />
-              +62 812-3456-7890
+              +62 896-062-3506
             </p>
           </div>
           <div className="mt-8">

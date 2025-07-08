@@ -49,7 +49,7 @@ function Footer() {
                 <FaInstagram size={20} />
               </a>
               <a 
-                href="https://wa.me/6281234567890" // Contoh link WhatsApp
+                href="https://wa.me/6289606623506" // Contoh link WhatsApp
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="bg-amber-700 hover:bg-green-600 p-3 rounded-full transition duration-300 transform hover:scale-110"
@@ -68,14 +68,14 @@ function Footer() {
                 <FaMapMarkerAlt className="text-amber-500 mt-1 flex-shrink-0" />
                 <div>
                   <p className="text-amber-200 text-sm">
-                    Jl. Malioboro No. 123<br />
-                    Yogyakarta, Indonesia
+                    Jl. Merdeka  No. 123<br />
+                    Demak, Jawa Tengah
                   </p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <FaPhone className="text-amber-500 flex-shrink-0" />
-                <p className="text-amber-200 text-sm">+62 812-3456-7890</p>
+                <p className="text-amber-200 text-sm">+62 896-0662-3506</p>
               </div>
               <div className="flex items-center space-x-3">
                 <FaEnvelope className="text-amber-500 flex-shrink-0" />

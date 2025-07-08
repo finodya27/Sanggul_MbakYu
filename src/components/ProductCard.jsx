@@ -1,9 +1,9 @@
 // src/components/ProductCard.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaTrash, FaEdit } from 'react-icons/fa'; // Import ikon hapus dan edit
+import { FaTrash, FaEdit } from 'react-icons/fa'; 
 
-function ProductCard({ product, isAdmin, onDelete }) { // Terima prop isAdmin dan onDelete
+function ProductCard({ product, isAdmin, onDelete }) { 
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform hover:scale-105 duration-300 relative border border-amber-100 flex flex-col">
       <img

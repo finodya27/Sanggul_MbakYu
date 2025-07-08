@@ -1,12 +1,11 @@
-// src/components/Navbar.jsx
-import React, { useState } from 'react'; // Import useState
+import React, { useState } from 'react'; 
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { FaBars, FaTimes } from 'react-icons/fa'; // Import ikon hamburger dan close
+import { FaBars, FaTimes } from 'react-icons/fa'; 
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false); // State untuk mengontrol menu mobile
+  const [isOpen, setIsOpen] = useState(false); 
   const auth = getAuth();
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
@@ -47,7 +46,7 @@ function Navbar() {
           </Link>
 
           {/* Hamburger Menu untuk Mobile */}
-          <div className="md:hidden"> {/* Tampilkan hanya di layar kecil */}
+          <div className="md:hidden">
             <button 
               onClick={() => setIsOpen(!isOpen)} 
               className="text-amber-100 focus:outline-none focus:text-amber-200"
@@ -58,7 +57,7 @@ function Navbar() {
           </div>
 
           {/* Navigation Menu (Desktop) */}
-          <ul className="hidden md:flex items-center space-x-8"> {/* Sembunyikan di mobile, tampil di desktop */}
+          <ul className="hidden md:flex items-center space-x-8"> 
             <li>
               <Link 
                 to="/" 
@@ -121,8 +120,6 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu (Conditional Rendering) */}
-      {/* Tampilkan menu jika isOpen true, sembunyikan jika false */}
       <div 
         className={`md:hidden ${isOpen ? 'block' : 'hidden'} bg-amber-800 pb-4 transition-all duration-300 ease-in-out`}
       >

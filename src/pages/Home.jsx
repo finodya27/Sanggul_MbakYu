@@ -1,9 +1,9 @@
 // src/pages/Home.jsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { collection, getDocs } from "firebase/firestore"; // Import untuk fetching data Firebase
-import { db } from '../firebase-config'; // Pastikan path ini benar
-import ProductCard from '../components/ProductCard'; // Import ProductCard
+import { collection, getDocs } from "firebase/firestore";
+import { db } from '../firebase-config';
+import ProductCard from '../components/ProductCard';
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -18,7 +18,7 @@ function Home() {
           id: doc.id,
           ...doc.data()
         }));
-        setProducts(productsList.slice(0, 3)); // Ambil hanya 3 produk teratas untuk ditampilkan di Home
+        setProducts(productsList.slice(0, 3));
       } catch (err) {
         console.error("Error fetching products for Home: ", err);
         setErrorProducts("Gagal memuat produk unggulan.");
@@ -120,8 +120,6 @@ function Home() {
                 <ProductCard 
                   key={product.id} 
                   product={product} 
-                  // Di halaman home, kita tidak perlu prop isAdmin dan onDelete
-                  // karena ini hanya tampilan highlight, bukan untuk manajemen produk.
                 />
               ))}
             </div>
