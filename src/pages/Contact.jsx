@@ -1,7 +1,5 @@
 // src/pages/Contact.jsx
 import React, { useState } from 'react';
-import { collection, addDoc } from "firebase/firestore";
-import { db } from '../firebase-config';
 import { FaPaperPlane, FaMapMarkerAlt, FaEnvelope, FaPhone } from 'react-icons/fa';
 
 function Contact() {
@@ -10,24 +8,22 @@ function Contact() {
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setStatus('sending');
-    try {
-      await addDoc(collection(db, "contacts"), {
-        name,
-        email,
-        message,
-        timestamp: new Date()
-      });
-      setStatus('success');
-      setName('');
-      setEmail('');
-      setMessage('');
-    } catch (error) {
-      console.error("Error sending message: ", error);
-      setStatus('error');
-    }
+
+    // Ganti ini dengan nomor WA tujuan (pakai format 62, tanpa tanda +)
+    const phoneNumber = '6289606623506';
+
+    const whatsappMessage = `Halo, saya ${name} (${email}) ingin konsultasi:\n\n${message}`;
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+    window.open(whatsappURL, '_blank');
+
+    setStatus('success');
+    setName('');
+    setEmail('');
+    setMessage('');
   };
 
   return (
@@ -79,10 +75,9 @@ function Contact() {
               className="w-full bg-gradient-to-r from-amber-600 to-yellow-600 text-white py-3 px-6 rounded-md text-lg font-semibold shadow-lg hover:from-amber-700 hover:to-yellow-700 transition duration-300 transform hover:scale-105 flex items-center justify-center"
               disabled={status === 'sending'}
             >
-              <FaPaperPlane className="mr-2" /> {status === 'sending' ? 'Mengirim...' : 'Kirim Pesan'}
+              <FaPaperPlane className="mr-2" /> {status === 'sending' ? 'Membuka WhatsApp...' : 'Kirim Pesan via WA'}
             </button>
-            {status === 'success' && <p className="text-green-600 mt-4 text-center">Pesan berhasil dikirim!</p>}
-            {status === 'error' && <p className="text-red-600 mt-4 text-center">Gagal mengirim pesan. Silakan coba lagi.</p>}
+            {status === 'success' && <p className="text-green-600 mt-4 text-center">Mengirim Pesan!</p>}
           </form>
         </div>
 
