@@ -69,7 +69,7 @@ function ProductDetail() {
             </button>
             {/* Tombol Pesan via WhatsApp */}
             <a
-              href={`https://wa.me/6289606623506?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20${encodeURIComponent(product.name)}%20(${product.id}).%20Bisakah%20Anda%20memberikan%20informasi%20lebih%20lanjut%3F`}
+              href={`https://wa.me/6289606623506?text=Halo%2C%20saya%20tertarik%20dengan%20produk%20${encodeURIComponent(product.name)}.%20Bisakah%20Anda%20memberikan%20informasi%20lebih%20lanjut%3F`}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-green-500 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:bg-green-600 transition duration-300 transform hover:scale-105 flex items-center justify-center"
